@@ -62,10 +62,12 @@ def show_score(nice,mean,name):
 
 def score(nice,mean,name):
     # score function is being passed the values stored within the 3 variables
-    if nice > 2: # if condition is valid, call win function passing in the variables so it can use them
+    if nice > 3: # if condition is valid, call win function passing in the variables so it can use them
         win(nice,mean,name)
-    if mean > 2: # if condition is valid, call lose function passing in the variables so it can use them
+    if mean > 3: # if condition is valid, call lose function passing in the variables so it can use them
         lose(nice,mean,name)
+    if nice == 2 and mean == 2:
+        tie(nice,mean,name)
     else:        # else, call nice_mean function passing in the variables so it can use them
         nice_mean(nice,mean,name)
     
@@ -74,6 +76,22 @@ def score(nice,mean,name):
 def win(nice,mean,name):
     # Substitute the {} wildcards with our variable values
     print("\nNice job {}, you win! \nEveryone loves you and you've \nmade lots of friends along the way!".format(name))
+    # call again function and pass in our variables
+    again(nice,mean,name)
+
+
+
+def lose(nice,mean,name):
+    # Substitute the {} wildcards with our variable values
+    print("\nAhhh too bad, game over! \n{}, you should have treated others better \nand it may have turned out differently...".format(name))
+    # call again function and pass in our variables
+    again(nice,mean,name)
+
+
+
+def tie(nice,mean,name):
+    # Substitute the {} wildcards with our variable values
+    print("\nYou alienated some people \n{}, but also made a couple of friends. \nYour life is average but feels a like it \ncould have been better.".format(name))
     # call again function and pass in our variables
     again(nice,mean,name)
 
@@ -95,9 +113,13 @@ def again(nice,mean,name):
 
 
 
+def reset(nice,mean,name):
+    nice = 0
+    mean = 0
+    # Notice, I do not reset the name variable as that same user has elected to play again
+    start(nice,mean,name)
 
 
-    
 
 if __name__ == "__main__":
     start()
